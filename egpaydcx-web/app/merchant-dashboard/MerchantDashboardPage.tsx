@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const API_BASE =
@@ -17,8 +17,7 @@ type Payment = {
   paidAt: string;
 };
 
-// 👉 Actual dashboard component – yahin useSearchParams use hoga
-function MerchantDashboardInner() {
+export default function MerchantDashboardPage() {
   const searchParams = useSearchParams();
   const merchantId = searchParams.get("merchantId") || "SHOP001";
 
@@ -122,23 +121,5 @@ function MerchantDashboardInner() {
         </div>
       )}
     </main>
-  );
-}
-
-// 👉 Next.js page component – Suspense yahin hai
-export default function MerchantDashboardPage() {
-  return (
-    <Suspense
-      fallback={
-        <main className="min-h-screen bg-black text-white p-6">
-          <h1 className="text-2xl font-bold mb-2">Merchant Dashboard</h1>
-          <p className="text-sm text-gray-400">
-            Loading merchant data...
-          </p>
-        </main>
-      }
-    >
-      <MerchantDashboardInner />
-    </Suspense>
   );
 }
