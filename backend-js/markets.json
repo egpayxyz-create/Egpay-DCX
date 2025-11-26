@@ -1,0 +1,20 @@
+[
+  {
+    "pair": "EGLIFE_USDT",
+    "base": "EGLIFE",
+    "quote": "USDT",
+    "symbol": "EGLIFE/USDT",
+    "lastPrice": 0.0042,
+    "change24h": 0,
+    "volume24h": 0
+  },
+  {
+    "pair": "MRC_USDT",
+    "base": "MRC",
+    "quote": "USDT",
+    "symbol": "MRC/USDT",
+    "lastPrice": 0.10,
+    "change24h": 0,
+    "volume24h": 0
+  }
+]

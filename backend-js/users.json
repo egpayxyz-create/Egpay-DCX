@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1763890679430,
+    "name": "BHAGWAN KUMAR",
+    "email": "bk15011987@gmail.com",
+    "password": "$2b$10$jpyAiKUaLr6TCGKl4dFFiuAAbk7zvjcINiVD86xtfVnKLAcgvR3xC"
+  },
+  {
+    "id": 1764034997228,
+    "name": "admin",
+    "email": "egpay.xyz@gmail.com",
+    "passwordHash": "$2b$10$WJxBVtZXnHxpK1q35pvuL.zzncW59K13ClycwdQtSaJR/k3TJzEmS",
+    "password": "$2b$10$WJxBVtZXnHxpK1q35pvuL.zzncW59K13ClycwdQtSaJR/k3TJzEmS",
+    "isAdmin": true
+  },
+  {
+    "id": 1764040476863,
+    "name": "Admin",
+    "email": "admin@egpaydcx.com",
+    "passwordHash": "$2b$10$.o42aQhRIoteCe8tGSs4oe4Wtwc2eGS4ZXN9J.E7zcSjS1hpnCXhO",
+    "password": "$2b$10$.o42aQhRIoteCe8tGSs4oe4Wtwc2eGS4ZXN9J.E7zcSjS1hpnCXhO",
+    "isAdmin": true
+  }
+]

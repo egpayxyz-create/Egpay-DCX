@@ -1,0 +1,12 @@
+# Backend
+backend-js/node_modules
+backend-js/.env
+
+# Frontend
+egpaydcx-web/node_modules
+egpaydcx-web/.next
+egpaydcx-web/.env
+
+# Misc
+.DS_Store
+Thumbs.db
