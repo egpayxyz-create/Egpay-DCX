@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const API_BASE =
@@ -13,7 +13,8 @@ type Merchant = {
   upi: string;
 };
 
-export default function PayPage() {
+// 👇 INNER component – yahin saare hooks use honge
+function PayPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -25,11 +26,6 @@ export default function PayPage() {
   const [currency, setCurrency] = useState("INR");
   const [message, setMessage] = useState("");
   const [paying, setPaying] = useState(false);
-
-  const token =
-    typeof window !== "undefined"
-      ? localStorage.getItem("egpaydcx_user_token")
-      : null;
 
   useEffect(() => {
     async function loadMerchant() {
@@ -55,6 +51,11 @@ export default function PayPage() {
       setMessage("Invalid payment link (missing merchantId)");
       return;
     }
+
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("egpaydcx_user_token")
+        : null;
 
     if (!token) {
       setMessage("Please login first.");
@@ -121,7 +122,8 @@ export default function PayPage() {
           <div className="border border-gray-700 rounded-lg p-3 text-sm">
             <p className="font-semibold text-lg">{merchant.name}</p>
             <p className="text-gray-400">
-              EGPAY ID: <span className="text-yellow-300">{merchant.egpayId}</span>
+              EGPAY ID:{" "}
+              <span className="text-yellow-300">{merchant.egpayId}</span>
             </p>
             <p className="text-gray-400">
               UPI: <span className="text-yellow-300">{merchant.upi}</span>
@@ -176,5 +178,27 @@ export default function PayPage() {
         </button>
       </div>
     </main>
+  );
+}
+
+// 👇 OUTER page component – sirf Suspense wrapper
+export default function PayPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-gray-900 rounded-2xl p-6 space-y-4 shadow-lg">
+            <h1 className="text-2xl font-bold text-yellow-400 mb-2">
+              EGPAY – Scan & Pay
+            </h1>
+            <p className="text-sm text-gray-400">
+              Loading payment details...
+            </p>
+          </div>
+        </main>
+      }
+    >
+      <PayPageInner />
+    </Suspense>
   );
 }
