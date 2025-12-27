@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum OrderStatus {
+  CREATED
+  EXECUTED
+  FAILED
+}
+
+model Rate {
+  pair      String   @id
+  baseRate  Float
+  enabled   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}
+
+model Quote {
+  id        String   @id @default(cuid())
+  pair      String
+  side      String
+  wallet    String
+  amountIn  Float
+  amountOut Float
+  rate      Float
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  Order     Order?
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  quoteId    String      @unique
+  quote      Quote       @relation(fields: [quoteId], references: [id])
+  status     OrderStatus @default(CREATED)
+  txHashIn   String?
+  txHashOut  String?
+  error      String?
+  createdAt  DateTime    @default(now())
+  executedAt DateTime?
+}
